@@ -94,4 +94,27 @@ public class UsuarioService {
 
         return usuarioConverter.paraTelefoneDTO(telefoneRepository.save(telefone));
     }
+
+    public EnderecoDTO cadastroEndereco(String token, EnderecoDTO enderecoDTO){
+        String email = jwtUtil.extractEmail(token.substring(7));
+
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFoundException("Email não encontrado"));
+
+        Endereco enderecoEntity = usuarioConverter.paraEndercoEntity(enderecoDTO, usuario.getId());
+
+        return usuarioConverter.paraEndercoDTO(enderecoRepository.save(enderecoEntity));
+    }
+
+    public TelefoneDTO cadastroTelefone(String token, TelefoneDTO telefoneDTO){
+
+        String email = jwtUtil.extractEmail(token.substring(7));
+
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFoundException("Email não encontrado"));
+
+        Telefone telefoneEntity = usuarioConverter.paraTelefoneEntity(telefoneDTO, usuario.getId());
+
+        return usuarioConverter.paraTelefoneDTO(telefoneRepository.save(telefoneEntity));
+    }
 }
