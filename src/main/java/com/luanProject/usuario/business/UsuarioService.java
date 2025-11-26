@@ -63,7 +63,7 @@ public class UsuarioService {
         //Aqui extraimos o email do token
         String email = jwtUtil.extractEmail(token.substring(7));
 
-        //Aqui é criptografada a denha caso ela n seja nula
+        //Aqui é criptografada a senha caso ela n seja nula
         dto.setSenha(dto.getSenha() != null ? passwordEncoder.encode(dto.getSenha()) : null);
 
         //Aqui buscamos os dados do usuario atravez do email no banco de dados

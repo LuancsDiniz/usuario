@@ -47,7 +47,7 @@ public class UsuarioController {
     }
 
     @PutMapping
-    public ResponseEntity<UsuarioDTO> buscaDadoUsuario(@RequestBody UsuarioDTO dto,
+    public ResponseEntity<UsuarioDTO> atualizaDadoUsuario(@RequestBody UsuarioDTO dto,
                                                     @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token, dto));
     }
@@ -71,7 +71,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/telefone")
-    public ResponseEntity<TelefoneDTO> cadastraEndereco(@RequestBody TelefoneDTO dto,
+    public ResponseEntity<TelefoneDTO> cadastraTelefone(@RequestBody TelefoneDTO dto,
                                                         @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(usuarioService.cadastroTelefone(token, dto));
     }
